@@ -12,9 +12,11 @@ function App() {
   const [tourData, setTourData] = useState([])
 
   const fetchToursData = () => {
+    setLoading(true)
     const toursData = data();
     console.log(toursData, 'data'); 
     setTourData(tourData);
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -24,7 +26,7 @@ function App() {
   return (
     <>
       <div className="container w-full h-screen bg-zinc-600">
-        {loading ? <Loading/> : <h2 className='text-white'>Tours Project Setup</h2> }
+        {loading ? <Loading/> : <Tours/> }
       </div>
     </>
   )
