@@ -14,8 +14,8 @@ function App() {
   const fetchToursData = () => {
     setLoading(true)
     const toursData = data();
-    console.log(toursData, 'data'); 
-    setTourData(tourData);
+    // console.log(toursData, 'data'); 
+    setTourData(toursData);
     setLoading(false)
   }
 
@@ -26,7 +26,7 @@ function App() {
   return (
     <>
       <div className="container w-full h-screen bg-zinc-600">
-        {loading ? <Loading/> : <Tours/> }
+        {loading ? <Loading/> : <Tours tourData = {tourData}/> }
       </div>
     </>
   )
