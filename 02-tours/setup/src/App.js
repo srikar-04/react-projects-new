@@ -11,6 +11,12 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [tourData, setTourData] = useState([])
 
+  const removeTour = (id) => {
+    // console.log(id);
+    
+    const newTours = tourData.filter((tour) => tour.id !== id)
+    setTourData(newTours);
+  }
   const fetchToursData = () => {
     setLoading(true)
     const toursData = data();
@@ -21,14 +27,28 @@ function App() {
   useEffect(() => {
     fetchToursData();
   }, [])
-  
+
   return (
     <>
       <div className="container w-full min-h-screen bg-zinc-00">
-        {loading ? <Loading/> : <Tours tourData = {tourData}/> }
+        {loading ? <Loading/> : 
+          tourData.length==0 ?
+          (
+            <>
+              <div className=' mt-2 mb-2 flex p-1 text-4xl items-center justify-center'>No Tours Left</div>
+              <div className='flex items-center justify-center'>
+              <button 
+                onClick={() => fetchToursData()}
+                className='bg-blue-500 text-white rounded p-0.5 font-semibold text-lg'>Refresh</button>
+              </div>
+            </>
+          )
+          :
+          <Tours tourData = {tourData} removeTour={removeTour}/> }
       </div>
     </>
   )
+  
 }
 
 export default App

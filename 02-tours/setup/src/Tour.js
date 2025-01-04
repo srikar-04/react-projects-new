@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 
-const Tour = ({ id, image, info, name, price }) => {
+const Tour = ({ id, image, info, name, price, removeTour }) => {
 
   // console.log(info.substring(0, 300));
 
   const [more, setMore] = useState(false)
+  // const [interested, setInterested] = useState(true)
   
   
   return (
     <>
-     <div className=' p-2 flex flex-col justify-center w-[500px] h-auto mx-auto border mb-2'> 
+     <div className=' p-2 flex flex-col justify-center w-[500px] h-auto mx-auto mb-3 shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)]'> 
       {/* image of place */}
       <div className='w-[480px] h-[320px]'>
       <img className='w-full h-full object-cover' src={image} alt="image of place" />
@@ -24,13 +25,13 @@ const Tour = ({ id, image, info, name, price }) => {
         
         {info && !more  ? (
           <>
-            {info.substring(0, 300)}
+            {info.substring(0, 200)}
             <button
               onClick={() => {
-                console.log('clicked on read button', Math.random())
+                // console.log('clicked on read button', Math.random())
                 return setMore(prev => !prev)
               }}
-             className='text-blue-500'>Read more....</button>
+             className='text-blue-500'>Read More....</button>
           </>
         )
         : (
@@ -44,7 +45,9 @@ const Tour = ({ id, image, info, name, price }) => {
 
       </div>
 
-      <div className='flex items-center justify-center p-1'>
+      <div 
+        onClick={() => removeTour(id)}
+        className='flex items-center justify-center p-1'>
         <button className='text-red-500 border border-red-500 py-0.5 rounded font-semibold px-1'>Not Interested</button>
       </div>
 
