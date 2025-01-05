@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 const Question = ({id, info, title}) => {
 
-  // const [ids, setIds] = useState([])
+  // const [ids, setIds] = useState()
   const [plus, setPlus] = useState(true)
 
   const button = () => {
