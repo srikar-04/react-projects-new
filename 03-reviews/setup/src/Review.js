@@ -8,11 +8,27 @@ const Review = () => {
   const {id, image, job, name, text} = people[index]
   
   const rightButton = () => {
-    console.log('clicked on right button', Math.random());
+    // console.log('clicked on right button', Math.random());
+    if(index !== people.length-1 ) {
+      setIndex(prev => prev+1)
+    } else {
+      setIndex(0)
+    }
   }
 
   const leftButton = () => {
-    console.log('clicked on left button', Math.random());
+    // console.log('clicked on left button', Math.random());
+    if(index !== 0) {
+      setIndex(prev => prev-1)
+    } else {
+      setIndex(people.length-1)
+    }
+  }
+
+  const surpriseButton = () => {
+    const index = Math.floor(Math.random()*people.length)
+    // console.log(index,'index');
+    setIndex(index)
   }
 
   return (
@@ -37,7 +53,9 @@ const Review = () => {
             className='hover:text-blue-700' />
         </div>
         {/* surprise button */}
-        <button className='random-btn mb-3'>surprise me</button>
+        <button 
+          onClick={() => surpriseButton()}
+          className='random-btn mb-3'>surprise me</button>
       </div>
     </>
   )
